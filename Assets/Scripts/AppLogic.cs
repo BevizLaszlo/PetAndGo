@@ -29,8 +29,8 @@ public class AppLogic : MonoBehaviour
 
     public List<Visszavalthato> Tipusok = new()
     {
-        new Visszavalthato("Üveg (1 liter)", 1000),
-        new Visszavalthato("PET (0,5 liter)", 500)
+        new Visszavalthato("Üveg (1 liter)", 1000, 150),
+        new Visszavalthato("PET (0,5 liter)", 500, 50)
     };
 
     public List<Visszavalthato> visszavalthatok;
@@ -58,9 +58,9 @@ public class AppLogic : MonoBehaviour
             }
 
         Kimenet.text = "";
-        foreach (var v in visszavalthatok)
+        foreach (var v in visszavalthatok.GroupBy(v => v.Nev))
         {
-            Kimenet.text += $"{v.Nev}\n";
+            Kimenet.text += $"{v.Key} - {v.Count()} - {v.Count() * v.First().ErtekAr} Ft\n";
         }
         HozzaadasPanel.gameObject.SetActive(false);
     }
