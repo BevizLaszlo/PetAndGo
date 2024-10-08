@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489406957329006239, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1489406957329006239, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1365727821020954942, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1028504314}
     - target: {fileID: 2094714400442802709, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -219,6 +223,14 @@ PrefabInstance:
     - target: {fileID: 2094714400442802709, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629384657102198154, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7525160766265340092, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
+    - target: {fileID: 3629384657102198154, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveToScene
       objectReference: {fileID: 0}
     - target: {fileID: 3731624647563735711, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchorMax.y
@@ -267,6 +279,14 @@ PrefabInstance:
     - target: {fileID: 3893928651456183729, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933784681740842663, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7525160766265340092, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
+    - target: {fileID: 3933784681740842663, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveToScene
       objectReference: {fileID: 0}
     - target: {fileID: 4758627426717543544, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchorMax.y
