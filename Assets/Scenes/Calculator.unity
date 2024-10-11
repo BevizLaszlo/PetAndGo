@@ -942,6 +942,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
+--- !u!114 &478733131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7525160766265340092, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
+  m_PrefabInstance: {fileID: 478733130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3434b2fcdc500b140bdcc18047a925a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &510478481
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,7 +2834,7 @@ PrefabInstance:
     - target: {fileID: 115140987322986954, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7525160766265340092, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
+      objectReference: {fileID: 478733131}
     - target: {fileID: 115140987322986954, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MoveToScene
@@ -2867,7 +2878,7 @@ PrefabInstance:
     - target: {fileID: 3629384657102198154, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7525160766265340092, guid: 9cb6851434cf71b47b22df100b64d4dd, type: 3}
+      objectReference: {fileID: 478733131}
     - target: {fileID: 3629384657102198154, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MoveToScene
@@ -2919,6 +2930,18 @@ PrefabInstance:
     - target: {fileID: 3893928651456183729, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933784681740842663, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933784681740842663, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 478733131}
+    - target: {fileID: 3933784681740842663, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MoveToScene
       objectReference: {fileID: 0}
     - target: {fileID: 4758627426717543544, guid: 57169cc5953769d4e949fe21dcf48587, type: 3}
       propertyPath: m_AnchorMax.y
