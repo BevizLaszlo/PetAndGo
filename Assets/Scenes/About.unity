@@ -330,7 +330,7 @@ MonoBehaviour:
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
+  m_FlexibleHeight: 30
   m_LayoutPriority: 1
 --- !u!114 &448871048
 MonoBehaviour:
@@ -360,9 +360,9 @@ MonoBehaviour:
     of your bag, it can give you an idea, about how many turns you have to do, with
     your exchangeable items, to your nearest RePoint.
 
-    For a little fun, we
-    also included a little game for you. In that, you have to throw cans, bottles,
-    plastics to the RePoint, to excanghe them for points.'
+    For a little fun, we also
+    included a little game for you. In that, you have to throw cans, bottles, plastics
+    to the RePoint, to excanghe them for points.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -389,12 +389,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 92
+  m_fontSizeBase: 95
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 92
   m_fontStyle: 0
   m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
@@ -1222,8 +1222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 100
-    m_Right: 100
+    m_Left: 200
+    m_Right: 200
     m_Top: 200
     m_Bottom: 200
   m_ChildAlignment: 4
@@ -1249,6 +1249,7 @@ GameObject:
   - component: {fileID: 1585560214}
   - component: {fileID: 1585560213}
   - component: {fileID: 1585560212}
+  - component: {fileID: 1585560217}
   m_Layer: 5
   m_Name: btnGithub
   m_TagString: Untagged
@@ -1366,7 +1367,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1585560215}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1585560217}
+        m_TargetAssemblyTypeName: OpenLinks, Assembly-CSharp
+        m_MethodName: OpenInBrowser
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: https://github.com/BevizLaszlo/PetAndGo/
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1585560215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,6 +1418,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585560210}
   m_CullTransparentMesh: 1
+--- !u!114 &1585560217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585560210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2135a02d01617745ae14f6fb35124a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1800305821
 GameObject:
   m_ObjectHideFlags: 0
