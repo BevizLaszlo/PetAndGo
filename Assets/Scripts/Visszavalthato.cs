@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Visszavalthato
 {
+    public static List<Visszavalthato> Visszavalthatok = new List<Visszavalthato>();
+
     public string Nev { get; set; }
     public double Terfogat { get; set; }
     

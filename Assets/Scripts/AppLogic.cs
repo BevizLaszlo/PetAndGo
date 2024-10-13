@@ -29,7 +29,7 @@ public class AppLogic : MonoBehaviour
 
     public List<Visszavalthato> Tipusok = new()
     {
-        new Visszavalthato("Üveg (1 liter)", 1000, 150),
+        new Visszavalthato("Glass (1 liter)", 1000, 150),
         new Visszavalthato("PET (0,5 liter)", 500, 50)
     };
 
@@ -38,7 +38,8 @@ public class AppLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        visszavalthatok = new();
+        visszavalthatok = Visszavalthato.Visszavalthatok;
+        Kiiratas();
     }
 
     // Update is called once per frame
@@ -55,14 +56,20 @@ public class AppLogic : MonoBehaviour
             {
                 visszavalthatok.Add(
                     new Visszavalthato(Tipusok.First(t => t.Nev == Dropdown.options[Dropdown.value].text)));
+                Visszavalthato.Visszavalthatok = visszavalthatok;
             }
 
+        Kiiratas();
+        HozzaadasPanel.gameObject.SetActive(false);
+    }
+
+    private void Kiiratas()
+    {
         Kimenet.text = "";
         foreach (var v in visszavalthatok.GroupBy(v => v.Nev))
         {
             Kimenet.text += $"{v.Key} - {v.Count()} - {v.Count() * v.First().ErtekAr} Ft\n";
         }
-        HozzaadasPanel.gameObject.SetActive(false);
     }
 
     public void ShowHozzaadas()
