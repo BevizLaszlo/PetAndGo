@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 1
-    path: Assets/Scenes/Calculator.unity
+    path: Assets/Scenes/List.unity
     guid: abc9fb2970f6ed647a728b27559bb809
   - enabled: 1
     path: Assets/Scenes/About.unity
     guid: 7a21dbc66bf8adf489b9b0e74cd7b0be
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Calculator.unity
     guid: 4a177b68c5c50384d8996e634b02fb9c
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 161b125e4d51d734cb67ba9e29b13f00, type: 2}
