@@ -66,7 +66,8 @@ public class AppLogic : MonoBehaviour
     private void Kiiratas()
     {
         Kimenet.text = "";
-        foreach (var v in visszavalthatok.GroupBy(v => v.Nev))
+        var temp_v = visszavalthatok.OrderBy(v => v.ErtekPerTerfogat).ToList();
+        foreach (var v in temp_v.GroupBy(v => v.Nev))
         {
             Kimenet.text += $"{v.Key} - {v.Count()} - {v.Count() * v.First().ErtekAr} Ft\n";
         }
