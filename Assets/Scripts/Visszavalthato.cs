@@ -11,6 +11,7 @@ public class Visszavalthato
     public double Terfogat { get; set; }
     
     public int ErtekAr { get; set; }
+    public double ErtekPerTerfogat { get; set; }
 
     public Visszavalthato() { }
 
@@ -19,6 +20,8 @@ public class Visszavalthato
         this.Nev = nev;
         this.Terfogat = terfogat;
         this.ErtekAr = ertekAr;
+
+        this.ErtekPerTerfogat = this.ErtekAr / this.Terfogat;
     }
 
 
@@ -27,5 +30,7 @@ public class Visszavalthato
         this.Nev = old.Nev;
         this.Terfogat = old.Terfogat;
         this.ErtekAr = old.ErtekAr;
+
+        this.ErtekPerTerfogat = this.ErtekAr / this.Terfogat;
     }
 }
