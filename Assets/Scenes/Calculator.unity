@@ -2830,7 +2830,7 @@ GameObject:
   - component: {fileID: 1834597459}
   - component: {fileID: 1834597458}
   m_Layer: 5
-  m_Name: Text
+  m_Name: InputBagSize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2966,7 +2966,7 @@ GameObject:
   - component: {fileID: 1888415058}
   - component: {fileID: 1888415061}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: InputText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3774,6 +3774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Kimenet: {fileID: 1241817511}
+  MaxSize: {fileID: 1834597458}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
