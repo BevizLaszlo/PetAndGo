@@ -12,6 +12,7 @@ public class PrintResult : MonoBehaviour
     public static List<Visszavalthato> List0_5L = new();
     public static List<Visszavalthato> temp_list = Visszavalthatok;
     public static string Size;
+    public static int Ertek = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class PrintResult : MonoBehaviour
         {
             if (v.Terfogat.Equals(1000)) List1L.Add(v);
             else List0_5L.Add(v);
+            Ertek += v.ErtekAr;
         }
         Size = MaxSize.text;
     }
@@ -51,6 +53,7 @@ public class PrintResult : MonoBehaviour
             }
             Kimenet.text += "\t" + v.Nev + "\n";
         }
+        Kimenet.text += "\n\nAz összérték: " + Ertek + " Ft";
         //Kimenet.text = $"{round} round\n";
         //while (List1L.Count != 0)
         //{
