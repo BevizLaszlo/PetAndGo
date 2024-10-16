@@ -3774,7 +3774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Kimenet: {fileID: 1241817511}
-  MaxSize: {fileID: 1834597458}
+  MaxSize: {fileID: 1888415058}
+  PriceGoal: {fileID: 266461005}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
