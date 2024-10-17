@@ -1,15 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class AppLogic : MonoBehaviour
 {
     [SerializeField] private GameObject HozzaadasPanel;
     [SerializeField] private TMP_Dropdown Dropdown;
     [SerializeField] private TMP_InputField Darab;
-    [SerializeField] private TextMeshProUGUI Kimenet;
+    [SerializeField] private TextMeshProUGUI KimenetDebug;
+    [SerializeField] private GameObject KimenetPanel;
+    [SerializeField] private GameObject KimenetPrefab;
     public static AppLogic Instance;
     public int VisszavaltasiAr = 50; // HUF
 
@@ -38,6 +43,7 @@ public class AppLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(KimenetPanel.transform.GetChild(0).gameObject);
         visszavalthatok = Visszavalthato.Visszavalthatok;
         Kiiratas();
     }
@@ -65,12 +71,33 @@ public class AppLogic : MonoBehaviour
 
     private void Kiiratas()
     {
-        Kimenet.text = "";
-        var temp_v = visszavalthatok.OrderBy(v => v.ErtekPerTerfogat).ToList();
-        foreach (var v in temp_v.GroupBy(v => v.Nev))
+        if (KimenetDebug.IsActive())
         {
-            Kimenet.text += $"{v.Key} - {v.Count()} - {v.Count() * v.First().ErtekAr} Ft\n";
+            KimenetDebug.text = "";
+            var temp_v = visszavalthatok.OrderBy(v => v.ErtekPerTerfogat).ToList();
+            foreach (var v in temp_v.GroupBy(v => v.Nev))
+            {
+                KimenetDebug.text += $"{v.Key} - {v.Count()} - {v.Count() * v.First().ErtekAr} Ft\n";
+            }
         }
+        foreach(Transform child in KimenetPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < visszavalthatok.Count; i++)
+        {
+            var p = Instantiate(KimenetPrefab);
+            p.GetComponentInChildren<DeleteElem>().id = i;
+            p.transform.SetParent(KimenetPanel.transform, false);
+            p.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = visszavalthatok[i].Nev;
+            p.GetComponentInChildren<Button>().onClick.AddListener(() =>
+            {
+                int id = p.GetComponentInChildren<DeleteElem>().id;
+                AppLogic.Instance.visszavalthatok.RemoveAt(id);
+                AppLogic.Instance.Kiiratas();
+            });
+        }
+        
     }
 
     public void ShowHozzaadas()
