@@ -6,17 +6,16 @@ using static Visszavalthato;
 using System.Linq;
 using System.Globalization;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class PrintResult : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI Kimenet;
     [SerializeField] public TMP_InputField MaxSize;
     [SerializeField] public TMP_InputField PriceGoal;
-    public static List<Visszavalthato> List1L = new();
-    public static List<Visszavalthato> List0_5L = new();
-    public static List<Visszavalthato> temp_list = Visszavalthatok;
+    public static List<Visszavalthato> temp_list = new();
     public static string Size;
-    public static int Ertek = 0;
+    public static int Ertek;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +25,6 @@ public class PrintResult : MonoBehaviour
 
     void Awake()
     {
-        foreach (var v in Visszavalthatok)
-        {
-            if (v.Terfogat.Equals(1000)) List1L.Add(v);
-            else List0_5L.Add(v);
-        }
-        Size = MaxSize.text;
-        Ertek = Visszavalthatok.Sum(v => v.ErtekAr);
     }
 
     // Update is called once per frame
@@ -44,10 +36,13 @@ public class PrintResult : MonoBehaviour
     public void Print()
     {
         Kimenet.text = string.Empty;
+        Ertek = Visszavalthatok.Sum(x => x.ErtekAr);
+        Kimenet.color = Color.white;
 
         double max = 0;
         if (!double.TryParse(MaxSize.text.Trim(), out max))
         {
+            Kimenet.color = Color.red;
             Kimenet.text = $"You have given an invalid bag size: {MaxSize.text} ({MaxSize.text.GetType()}).";
             return;
         }
@@ -55,77 +50,61 @@ public class PrintResult : MonoBehaviour
         double endgoal = 0;
         if (!double.TryParse(PriceGoal.text.Trim(), out endgoal))
         {
+            Kimenet.color = Color.red;
             Kimenet.text = $"You have given an invalid target amount: {PriceGoal.text} ({PriceGoal.text.GetType()}).";
             return;
         }
 
         if (endgoal > Ertek)
         {
+            Kimenet.color = Color.yellow;
             Kimenet.text = $"Unfortunately, your current bottles do not reach the target amount.\nThis is how much money is missing: {endgoal - Ertek} Ft";
             return;
         }
+        if (Visszavalthatok.Count == 0) return;
 
         double ossz = 0;
         int round = 1;
-        Kimenet.text += $"{round}. round\n";
-        temp_list = temp_list.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
+        temp_list = Visszavalthatok.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
+        Kimenet.text += $"Round {round}\n";
 
-        //foreach (var v in temp_list) {
-        //    ossz += v.Terfogat;
-        //    if(ossz > max)
-        //    {
-        //        round++;
-        //        Kimenet.text += $"{round}. round\n";
-        //        ossz = v.Terfogat ;
-        //    }
-        //    Kimenet.text += $"\t{v.Nev} ({v.ErtekPerTerfogat}Ft/l)\n";
-        //}
-
-        int[] terfogatok = { 2000, 1500, 1000, 500 };
-        //while(temp_list.Count != 0)
-        //{
-        //    foreach (int item in terfogatok)
-        //    {
-
-        //        if (ossz + 500 > max)
-        //        {
-        //            Kimenet.text += $"{++round}. round\n";
-        //            ossz = 0;
-        //        }
-
-        //        if (ossz + item < max && temp_list.Exists(x => x.Terfogat == item))
-        //        {
-        //            Visszavalthato temp = temp_list.Where(t => t.Terfogat == item).First();
-        //            ossz += temp.Terfogat;
-        //            Kimenet.text += $"\t{temp.Nev} ({temp.ErtekPerTerfogat}Ft/l)\n";
-        //            temp_list.Remove(temp);
-        //            break;
-        //        }                
-        //    }
-        //}
-
-        while (temp_list.Count != 0)
+        int[] terfogatok = { 500, 1000, 1500, 2000 };
+        int cm = temp_list.Count;
+        for (int i = 0; i < cm; i++)
         {
-            foreach (int item in terfogatok)
+            if (ossz + 2000 <= max && temp_list.Count(x => x.Terfogat.Equals(2000)) != 0)
             {
+                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(2000)).First().Nev}\n";
+                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(2000)).First());
+                ossz += 2000;
+            }
+            else if (ossz + 1500 <= max && temp_list.Count(x => x.Terfogat.Equals(1500)) != 0)
+            {
+                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(1500)).First().Nev}\n";
+                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(1500)).First());
+                ossz += 1500;
+            }
+            else if (ossz + 1000 <= max && temp_list.Count(x => x.Terfogat.Equals(1000)) != 0)
+            {
+                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(1000)).First().Nev}\n";
+                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(1000)).First());
+                ossz += 1000;
+            }
+            else if (ossz + 500 <= max && temp_list.Count(x => x.Terfogat.Equals(500)) != 0)
+            {
+                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(500)).First().Nev}\n";
+                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(500)).First());
+                ossz += 500;
+            }
 
-                if (ossz + 500 > max)
-                {
-                    Kimenet.text += $"{++round}. round\n";
-                    ossz = 0;
-                }
 
-                if (ossz + item < max && temp_list.Exists(x => x.Terfogat == item))
-                {
-                    Visszavalthato temp = temp_list.Where(t => t.Terfogat == item).First();
-                    ossz += temp.Terfogat;
-                    Kimenet.text += $"\t{temp.Nev} ({temp.ErtekPerTerfogat}Ft/l)\n";
-                    temp_list.Remove(temp);
-                    break;
-                }
+            if (ossz + 500 > max && temp_list.Count > 0)
+            {
+                Kimenet.text += $"Round {++round}\n";
+                ossz = 0;
             }
         }
 
-        Kimenet.text += "\n\nAz összérték: " + Ertek + " Ft";
+        Kimenet.text += "\n\nFull Price: " + Ertek + " Ft";
     }
 }
