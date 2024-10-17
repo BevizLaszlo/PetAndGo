@@ -48,20 +48,20 @@ public class PrintResult : MonoBehaviour
         double max = 0;
         if (!double.TryParse(MaxSize.text.Trim(), out max))
         {
-            Kimenet.text = $"Helytelen táska méret adatot adott meg: {MaxSize.text} ({MaxSize.text.GetType()}).";
+            Kimenet.text = $"You have given an invalid bag size: {MaxSize.text} ({MaxSize.text.GetType()}).";
             return;
         }
 
         double endgoal = 0;
         if (!double.TryParse(PriceGoal.text.Trim(), out endgoal))
         {
-            Kimenet.text = $"Helytelen pénzösszeg adatot adott meg: {PriceGoal.text} ({PriceGoal.text.GetType()}).";
+            Kimenet.text = $"You have given an invalid target amount: {PriceGoal.text} ({PriceGoal.text.GetType()}).";
             return;
         }
 
         if (endgoal > Ertek)
         {
-            Kimenet.text = $"Sajnos jelenlegi palackjai nem érik el a célösszeget.\nEnnyi pénz hiányzik: {endgoal - Ertek} Ft";
+            Kimenet.text = $"Unfortunately, your current bottles do not reach the target amount.\nThis is how much money is missing: {endgoal - Ertek} Ft";
             return;
         }
 
