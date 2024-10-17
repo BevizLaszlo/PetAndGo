@@ -70,16 +70,62 @@ public class PrintResult : MonoBehaviour
         Kimenet.text += $"{round}. round\n";
         temp_list = temp_list.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
 
-        foreach (var v in temp_list) {
-            ossz += v.Terfogat;
-            if(ossz > max)
+        //foreach (var v in temp_list) {
+        //    ossz += v.Terfogat;
+        //    if(ossz > max)
+        //    {
+        //        round++;
+        //        Kimenet.text += $"{round}. round\n";
+        //        ossz = v.Terfogat ;
+        //    }
+        //    Kimenet.text += $"\t{v.Nev} ({v.ErtekPerTerfogat}Ft/l)\n";
+        //}
+
+        int[] terfogatok = { 2000, 1500, 1000, 500 };
+        //while(temp_list.Count != 0)
+        //{
+        //    foreach (int item in terfogatok)
+        //    {
+
+        //        if (ossz + 500 > max)
+        //        {
+        //            Kimenet.text += $"{++round}. round\n";
+        //            ossz = 0;
+        //        }
+
+        //        if (ossz + item < max && temp_list.Exists(x => x.Terfogat == item))
+        //        {
+        //            Visszavalthato temp = temp_list.Where(t => t.Terfogat == item).First();
+        //            ossz += temp.Terfogat;
+        //            Kimenet.text += $"\t{temp.Nev} ({temp.ErtekPerTerfogat}Ft/l)\n";
+        //            temp_list.Remove(temp);
+        //            break;
+        //        }                
+        //    }
+        //}
+
+        while (temp_list.Count != 0)
+        {
+            foreach (int item in terfogatok)
             {
-                round++;
-                Kimenet.text += $"{round}. round\n";
-                ossz = v.Terfogat ;
+
+                if (ossz + 500 > max)
+                {
+                    Kimenet.text += $"{++round}. round\n";
+                    ossz = 0;
+                }
+
+                if (ossz + item < max && temp_list.Exists(x => x.Terfogat == item))
+                {
+                    Visszavalthato temp = temp_list.Where(t => t.Terfogat == item).First();
+                    ossz += temp.Terfogat;
+                    Kimenet.text += $"\t{temp.Nev} ({temp.ErtekPerTerfogat}Ft/l)\n";
+                    temp_list.Remove(temp);
+                    break;
+                }
             }
-            Kimenet.text += $"\t{v.Nev} ({v.ErtekPerTerfogat}Ft/l)\n";
         }
+
         Kimenet.text += "\n\nAz összérték: " + Ertek + " Ft";
     }
 }
