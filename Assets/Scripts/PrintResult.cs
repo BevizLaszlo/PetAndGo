@@ -72,29 +72,16 @@ public class PrintResult : MonoBehaviour
         int cm = temp_list.Count;
         for (int i = 0; i < cm; i++)
         {
-            if (ossz + 2000 <= max && temp_list.Count(x => x.Terfogat.Equals(2000)) != 0)
+
+            foreach (int terfogat in terfogatok)
             {
-                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(2000)).First().Nev}\n";
-                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(2000)).First());
-                ossz += 2000;
-            }
-            else if (ossz + 1500 <= max && temp_list.Count(x => x.Terfogat.Equals(1500)) != 0)
-            {
-                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(1500)).First().Nev}\n";
-                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(1500)).First());
-                ossz += 1500;
-            }
-            else if (ossz + 1000 <= max && temp_list.Count(x => x.Terfogat.Equals(1000)) != 0)
-            {
-                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(1000)).First().Nev}\n";
-                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(1000)).First());
-                ossz += 1000;
-            }
-            else if (ossz + 500 <= max && temp_list.Count(x => x.Terfogat.Equals(500)) != 0)
-            {
-                Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(500)).First().Nev}\n";
-                temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(500)).First());
-                ossz += 500;
+                if (ossz + terfogat <= max && temp_list.Count(x => x.Terfogat.Equals(terfogat)) != 0)
+                {
+                    Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(terfogat)).First().Nev}\n";
+                    temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(terfogat)).First());
+                    ossz += terfogat;
+                    break;
+                }
             }
 
 
