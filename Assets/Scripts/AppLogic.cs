@@ -15,6 +15,7 @@ public class AppLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI KimenetDebug;
     [SerializeField] private GameObject KimenetPanel;
     [SerializeField] private GameObject KimenetPrefab;
+    [SerializeField] private TMP_Text TotalAmount;
     public static AppLogic Instance;
     public int VisszavaltasiAr = 50; // HUF
 
@@ -99,12 +100,14 @@ public class AppLogic : MonoBehaviour
                 AppLogic.Instance.Kiiratas();
             });
         }
-        
+        UpdateTotalAmountText();
     }
 
     public void ShowHozzaadas()
     {
         HozzaadasPanel.gameObject.SetActive(true);
     }
+
+    public void UpdateTotalAmountText() => TotalAmount.text = $"Total: {visszavalthatok.Sum(x => x.ErtekAr)} Ft";
 
 }

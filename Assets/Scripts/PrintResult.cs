@@ -53,12 +53,13 @@ public class PrintResult : MonoBehaviour
         if (Visszavalthatok.Count == 0) return;
 
         double teljesOsszeg = 0;
+        double forduloOsszeg = 0;
         double forduloTerfogat = 0;
         int round = 1;
         temp_list = Visszavalthatok.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
         Kimenet.text += $"Round {round}\n";
 
-        int[] terfogatok = { 500, 1000, 1500, 2000 };
+        int[] terfogatok = { 2000, 1500, 1000, 500 };
         int cm = temp_list.Count;
         for (int i = 0; i < cm; i++)
         {
@@ -71,15 +72,22 @@ public class PrintResult : MonoBehaviour
                     temp_list.Remove(temp);
                     forduloTerfogat += terfogat;
                     teljesOsszeg += temp.ErtekAr;
+                    forduloOsszeg += temp.ErtekAr;
+                    break;
                 }
             }
 
-            if (teljesOsszeg >= endgoal) break;
-
-            if (forduloTerfogat + 500 > max && temp_list.Count > 0)
+            if (teljesOsszeg >= endgoal)
             {
-                Kimenet.text += $"Round {++round}\n";
+                Kimenet.text += $"\n\t-------------\n\t\t{forduloOsszeg} Ft";
+                break;
+            }
+
+            if (temp_list.Count > 0 && forduloTerfogat + temp_list.OrderBy(x => x.Terfogat).First().Terfogat > max)
+            {
+                Kimenet.text += $"\t-------------\n\t\t{forduloOsszeg} Ft\n\nRound {++round}\n";
                 forduloTerfogat = 0;
+                forduloOsszeg = 0;
             }
         }
 
