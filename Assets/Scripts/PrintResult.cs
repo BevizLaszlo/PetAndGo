@@ -52,51 +52,54 @@ public class PrintResult : MonoBehaviour
         }
         if (Visszavalthatok.Count == 0) return;
 
-        double teljesOsszeg = 0;
-        double forduloOsszeg = 0;
-        double forduloTerfogat = 0;
-        int round = 1;
-        temp_list = Visszavalthatok.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
-        Kimenet.text += $"Round {round}\n";
+        List<List<Visszavalthato>> rounds = new();
+        rounds.Add(new List<Visszavalthato>());
 
+        temp_list = Visszavalthatok.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
+
+        // Calculation
         int[] terfogatok = { 2000, 1500, 1000, 500 };
         int cm = temp_list.Count;
         for (int i = 0; i < cm; i++)
         {
             foreach (int terfogat in terfogatok)
             {
-                if (forduloTerfogat + terfogat <= max && temp_list.Count(x => x.Terfogat.Equals(terfogat)) != 0)
+                if (rounds.Last().Sum(x => x.Terfogat) + terfogat <= max && temp_list.Count(x => x.Terfogat.Equals(terfogat)) != 0)
                 {
                     Visszavalthato temp = temp_list.Where(x => x.Terfogat.Equals(terfogat)).First();
-                    Kimenet.text += $"\t{temp.Nev}\n";
                     temp_list.Remove(temp);
-                    forduloTerfogat += terfogat;
-                    teljesOsszeg += temp.ErtekAr;
-                    forduloOsszeg += temp.ErtekAr;
+                    rounds.Last().Add(temp);
                     break;
                 }
             }
 
-            if (teljesOsszeg >= endgoal)
-            {
-                Kimenet.text += $"\n\t-------------\n\t\t{forduloOsszeg} Ft";
-                break;
-            }
+            if (rounds.Sum(x => x.Sum(y => y.ErtekAr)) >= endgoal) break;
 
-            if (temp_list.Count > 0 && forduloTerfogat + temp_list.OrderBy(x => x.Terfogat).First().Terfogat > max)
-            {
-                Kimenet.text += $"\t-------------\n\t\t{forduloOsszeg} Ft\n\nRound {++round}\n";
-                forduloTerfogat = 0;
-                forduloOsszeg = 0;
-            }
+            if (temp_list.Count > 0 && rounds.Last().Sum(x => x.Terfogat) + temp_list.OrderBy(x => x.Terfogat).First().Terfogat > max)
+                rounds.Add(new List<Visszavalthato>());
         }
 
-        if (teljesOsszeg >= endgoal)
-            Kimenet.text += "\n\nFull Price: " + teljesOsszeg + " Ft";
+
+
+        // Render
+        if (rounds.Sum(x => x.Sum(y => y.ErtekAr)) >= endgoal)
+        {
+            for (int i = 0; i < rounds.Count; i++)
+            {
+                Kimenet.text += $"Round {i + 1}\n";
+                foreach(Visszavalthato item in rounds[i])
+                    Kimenet.text += $"\t{item.Nev}\n";
+
+                Kimenet.text += $"\t-----------\n";
+                Kimenet.text += $"\t{rounds[i].Sum(x => x.ErtekAr)} Ft\n\n";
+            }
+
+            Kimenet.text += $"Total amount: {rounds.Sum(x => x.Sum(y => y.ErtekAr))} Ft";
+        }
         else
         {
             Kimenet.color = Color.yellow;
-            Kimenet.text = $"Unfortunately, your current bag size doesn't allow you to reach the target amount.\nThis is how much money is missing: {endgoal - teljesOsszeg} Ft";
+            Kimenet.text = $"Unfortunately, your current bag size doesn't allow you to reach the target amount.\nThis is how much money is missing: {endgoal - rounds.Sum(x => x.Sum(y => y.ErtekAr))} Ft";
         }
     }
 }
