@@ -35,10 +35,17 @@ public class AppLogic : MonoBehaviour
 
     public List<Visszavalthato> Tipusok = new()
     {
-        new Visszavalthato("Glass (2 liter)", 2000, 180),
-        new Visszavalthato("Glass (1,5 liter)", 1500, 170),
-        new Visszavalthato("Glass (1 liter)", 1000, 150),
-        new Visszavalthato("PET (0,5 liter)", 500, 50)
+        new Visszavalthato("Glass (2 liter)", 2000, 230),
+        new Visszavalthato("PET (2 liter)", 2000, 200),
+
+        new Visszavalthato("Glass (1,5 liter)", 1500, 180),
+        new Visszavalthato("PET (1,5 liter)", 1500, 150),
+        
+        new Visszavalthato("Glass (1 liter)", 1000, 130),
+        new Visszavalthato("PET (1 liter)", 1000, 100),
+        
+        new Visszavalthato("Glass (0,5 liter)", 500, 80),
+        new Visszavalthato("PET (0,5 liter)", 500, 50),
     };
 
     public List<Visszavalthato> visszavalthatok;
@@ -87,9 +94,11 @@ public class AppLogic : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
         for (int i = 0; i < visszavalthatok.Count; i++)
         {
             var p = Instantiate(KimenetPrefab);
+            p.GetComponent<Image>().color = (i % 2 == 0) ? new Color(0, 0, 0, 0) : new Color(22/255f, 62/255f, 100/255f, .4f);
             p.GetComponentInChildren<DeleteElem>().id = i;
             p.transform.SetParent(KimenetPanel.transform, false);
             p.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{visszavalthatok[i].Nev} - {visszavalthatok[i].ErtekAr}Ft";

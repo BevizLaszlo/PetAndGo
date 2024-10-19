@@ -86,15 +86,15 @@ public class PrintResult : MonoBehaviour
         {
             for (int i = 0; i < rounds.Count; i++)
             {
-                Kimenet.text += $"Round {i + 1}\n";
+                Kimenet.text += $"<color=#216AB0>Round {i + 1}</color>\n";
+
                 foreach(Visszavalthato item in rounds[i])
                     Kimenet.text += $"\t{item.Nev}\n";
 
                 Kimenet.text += $"\t-----------\n";
                 Kimenet.text += $"\t{rounds[i].Sum(x => x.ErtekAr)} Ft\n\n";
             }
-
-            Kimenet.text += $"Total amount: {rounds.Sum(x => x.Sum(y => y.ErtekAr))} Ft";
+            Kimenet.text += $"<color=#216AB0>Total amount: {rounds.Sum(x => x.Sum(y => y.ErtekAr))} Ft</color>";
         }
         else
         {
