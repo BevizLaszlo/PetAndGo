@@ -17,43 +17,32 @@ public class PrintResult : MonoBehaviour
     public static string Size;
     public static int Ertek;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    void Awake()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Print()
     {
         Kimenet.text = string.Empty;
         Ertek = Visszavalthatok.Sum(x => x.ErtekAr);
-        Kimenet.color = Color.white;
+        Kimenet.color = new Color(210, 210, 210);
+        bool hasError = false;
 
         double max = 0;
-        if (!double.TryParse(MaxSize.text.Trim(), out max))
+        if (!double.TryParse(MaxSize.text.Trim(), out max) || max <= 0)
         {
             Kimenet.color = Color.red;
-            Kimenet.text = $"You have given an invalid bag size: {MaxSize.text} ({MaxSize.text.GetType()}).";
-            return;
+            Kimenet.text += $"You have given an invalid bag size: {"{" + MaxSize.text + "}"}.\n\n";
+            hasError = true;
         }
 
         double endgoal = 0;
-        if (!double.TryParse(PriceGoal.text.Trim(), out endgoal))
+        if (!double.TryParse(PriceGoal.text.Trim(), out endgoal) || endgoal <= 0)
         {
             Kimenet.color = Color.red;
-            Kimenet.text = $"You have given an invalid target amount: {PriceGoal.text} ({PriceGoal.text.GetType()}).";
-            return;
+            Kimenet.text += $"You have given an invalid target amount: {"{" + PriceGoal.text + "}"}.";
+            hasError= true;
         }
+        if (hasError) return;
+
+
 
         if (endgoal > Ertek)
         {
