@@ -52,7 +52,8 @@ public class PrintResult : MonoBehaviour
         }
         if (Visszavalthatok.Count == 0) return;
 
-        double ossz = 0;
+        double teljesOsszeg = 0;
+        double forduloTerfogat = 0;
         int round = 1;
         temp_list = Visszavalthatok.OrderByDescending(x => x.ErtekPerTerfogat).ToList();
         Kimenet.text += $"Round {round}\n";
@@ -61,26 +62,33 @@ public class PrintResult : MonoBehaviour
         int cm = temp_list.Count;
         for (int i = 0; i < cm; i++)
         {
-
             foreach (int terfogat in terfogatok)
             {
-                if (ossz + terfogat <= max && temp_list.Count(x => x.Terfogat.Equals(terfogat)) != 0)
+                if (forduloTerfogat + terfogat <= max && temp_list.Count(x => x.Terfogat.Equals(terfogat)) != 0)
                 {
-                    Kimenet.text += $"\t{temp_list.Where(x => x.Terfogat.Equals(terfogat)).First().Nev}\n";
-                    temp_list.Remove(temp_list.Where(x => x.Terfogat.Equals(terfogat)).First());
-                    ossz += terfogat;
-                    break;
+                    Visszavalthato temp = temp_list.Where(x => x.Terfogat.Equals(terfogat)).First();
+                    Kimenet.text += $"\t{temp.Nev}\n";
+                    temp_list.Remove(temp);
+                    forduloTerfogat += terfogat;
+                    teljesOsszeg += temp.ErtekAr;
                 }
             }
 
+            if (teljesOsszeg >= endgoal) break;
 
-            if (ossz + 500 > max && temp_list.Count > 0)
+            if (forduloTerfogat + 500 > max && temp_list.Count > 0)
             {
                 Kimenet.text += $"Round {++round}\n";
-                ossz = 0;
+                forduloTerfogat = 0;
             }
         }
 
-        Kimenet.text += "\n\nFull Price: " + Ertek + " Ft";
+        if (teljesOsszeg >= endgoal)
+            Kimenet.text += "\n\nFull Price: " + teljesOsszeg + " Ft";
+        else
+        {
+            Kimenet.color = Color.yellow;
+            Kimenet.text = $"Unfortunately, your current bag size doesn't allow you to reach the target amount.\nThis is how much money is missing: {endgoal - teljesOsszeg} Ft";
+        }
     }
 }

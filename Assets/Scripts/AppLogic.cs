@@ -91,7 +91,7 @@ public class AppLogic : MonoBehaviour
             var p = Instantiate(KimenetPrefab);
             p.GetComponentInChildren<DeleteElem>().id = i;
             p.transform.SetParent(KimenetPanel.transform, false);
-            p.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = visszavalthatok[i].Nev;
+            p.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{visszavalthatok[i].Nev} - {visszavalthatok[i].ErtekAr}Ft";
             p.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
                 int id = p.GetComponentInChildren<DeleteElem>().id;

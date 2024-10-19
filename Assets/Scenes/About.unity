@@ -358,7 +358,7 @@ MonoBehaviour:
 
     With our Calculator, you can calculate the value of your glasses,
     cans and other containers that you want to exchange for money. Giving the volume
-    of your bag, it can give you an idea, about how many turns you have to do, with
+    of your bag, it can give you an idea about how many turns you have to do with
     your exchangeable items to your nearest RePoint.
 
 
@@ -682,7 +682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Visit the GitHub Link
+  m_text: GitHub Source Code
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
