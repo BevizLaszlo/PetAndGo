@@ -1,1 +1,1 @@
-Tagok: Bevíz László, Csizmadia Márk, Marcalek Máté, Révai Erik
+Csapattagok: Bevíz László, Csizmadia Márk, Marcalek Máté, Révai Erik
