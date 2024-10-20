@@ -18,6 +18,7 @@ public class AppLogic : MonoBehaviour
     [SerializeField] private TMP_Text TotalAmount;
     public static AppLogic Instance;
     public int VisszavaltasiAr = 50; // HUF
+    private static Color blue = new Color(22f / 255f, 62f / 255f, 100f / 255f, .4f);
 
     private void Awake()
     {
@@ -35,17 +36,17 @@ public class AppLogic : MonoBehaviour
 
     public List<Visszavalthato> Tipusok = new()
     {
-        new Visszavalthato("Glass (2 liter)", 2000, 230, Color.cyan),
-        new Visszavalthato("PET (2 liter)", 2000, 200, Color.yellow),
+        new Visszavalthato("Glass (2 liter)", 2000, 230),
+        new Visszavalthato("PET (2 liter)", 2000, 200, blue),
 
         new Visszavalthato("Glass (1,5 liter)", 1500, 180),
-        new Visszavalthato("PET (1,5 liter)", 1500, 150),
+        new Visszavalthato("PET (1,5 liter)", 1500, 150, blue),
         
         new Visszavalthato("Glass (1 liter)", 1000, 130),
-        new Visszavalthato("PET (1 liter)", 1000, 100),
+        new Visszavalthato("PET (1 liter)", 1000, 100, blue),
         
         new Visszavalthato("Glass (0,5 liter)", 500, 80),
-        new Visszavalthato("PET (0,5 liter)", 500, 50),
+        new Visszavalthato("PET (0,5 liter)", 500, 50, blue),
     };
 
     public List<Visszavalthato> visszavalthatok;
