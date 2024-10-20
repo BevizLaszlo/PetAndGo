@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HozzaadasPanel: {fileID: 903861147}
-  Dropdown: {fileID: 0}
+  Dropdown: {fileID: 363792662}
   Darab: {fileID: 182813892}
   KimenetDebug: {fileID: 864496067}
   KimenetPanel: {fileID: 463087557}

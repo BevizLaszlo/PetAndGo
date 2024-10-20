@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class AppLogic : MonoBehaviour
 {
     [SerializeField] private GameObject HozzaadasPanel;
-    [SerializeField] private TMP_Dropdown Dropdown;
+    [SerializeField] private ColorDropdown Dropdown;
     [SerializeField] private TMP_InputField Darab;
     [SerializeField] private TextMeshProUGUI KimenetDebug;
     [SerializeField] private GameObject KimenetPanel;
