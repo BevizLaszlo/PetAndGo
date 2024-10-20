@@ -35,8 +35,8 @@ public class AppLogic : MonoBehaviour
 
     public List<Visszavalthato> Tipusok = new()
     {
-        new Visszavalthato("Glass (2 liter)", 2000, 230),
-        new Visszavalthato("PET (2 liter)", 2000, 200),
+        new Visszavalthato("Glass (2 liter)", 2000, 230, Color.cyan),
+        new Visszavalthato("PET (2 liter)", 2000, 200, Color.yellow),
 
         new Visszavalthato("Glass (1,5 liter)", 1500, 180),
         new Visszavalthato("PET (1,5 liter)", 1500, 150),

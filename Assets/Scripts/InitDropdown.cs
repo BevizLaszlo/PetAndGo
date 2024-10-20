@@ -6,12 +6,17 @@ using System.Linq;
 using UnityEngine.UI;
 public class InitDropdown : MonoBehaviour
 {
-    private TMP_Dropdown Dropdown;
+    private ColorDropdown Dropdown;
     // Start is called before the first frame update
     void Start()
     {
-        Dropdown = GetComponent<TMP_Dropdown>();
-        Dropdown.AddOptions(AppLogic.Instance.Tipusok.Select(t => t.Nev).ToList());
+        Dropdown = GetComponent<ColorDropdown>();
+        List<TMP_Dropdown.OptionData> options = new();
+        foreach (var tipus in AppLogic.Instance.Tipusok)
+        {
+            options.Add(new ColorOptionData(tipus.Nev, tipus.Color));
+        }
+        Dropdown.AddOptions(options);
     }
 
     // Márknak: ez nem működött, és csak úgy tudtuk meghívni, ha elősször rákattintottunk az egyik itemre
