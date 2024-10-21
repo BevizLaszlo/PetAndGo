@@ -1,6 +1,6 @@
 <h1 align="center">PetAndGo</h1>
 <h3>Just4Fun</h3>
-Csapattagok:<ul><li>Bevíz László - UI</li><li>Csizmadia Márk - Programozás</li><li>Marcalek Máté - Sound Design</li> <li>Révai Erik - Grafika</li></ul> 
+Csapattagok:<ul><li>Bevíz László - UI</li><li>Csizmadia Márk - Programozás</li><li>Marcalek Máté (Csapatkapitány) - Sound Design</li> <li>Révai Erik - Grafika</li></ul> 
 Plusz funkciók: <ol><li>Zene</li>
                 <li>Grafikus megjelenítés</li>
                 <li>Saját tervezésű logó</li>
